@@ -1,0 +1,372 @@
+<?xml version='1.0' encoding='utf-8'?>
+<interface version="1.2">
+  <object class="tk.Toplevel" id="main_window">
+    <property name="geometry">1366x768</property>
+    <property name="height">200</property>
+    <property name="resizable">none</property>
+    <property name="title" translatable="yes">Biometric Basics</property>
+    <property name="width">200</property>
+    <child>
+      <object class="tk.Frame" id="menu_frame">
+        <property name="background">#F6AE2D</property>
+        <property name="height">800</property>
+        <property name="width">200</property>
+        <layout manager="pack">
+          <property name="side">left</property>
+        </layout>
+        <containerlayout manager="pack">
+          <property name="propagate">False</property>
+        </containerlayout>
+        <child>
+          <object class="tk.Button" id="select_image_button">
+            <property name="command" type="command" cbtype="simple">select_and_insert_image</property>
+            <property name="cursor">hand2</property>
+            <property name="text" translatable="yes">Select Image</property>
+            <layout manager="pack">
+              <property name="fill">x</property>
+              <property name="ipadx">10</property>
+              <property name="padx">10</property>
+              <property name="pady">10</property>
+              <property name="side">top</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="tk.Frame" id="frame1">
+            <property name="height">117</property>
+            <property name="width">200</property>
+            <layout manager="pack">
+              <property name="padx">10</property>
+              <property name="pady">10</property>
+              <property name="side">top</property>
+            </layout>
+            <containerlayout manager="pack">
+              <property name="propagate">False</property>
+            </containerlayout>
+            <child>
+              <object class="tk.Scale" id="binarize_treshold_scale">
+                <property name="from_">0</property>
+                <property name="label" translatable="yes">Threshold</property>
+                <property name="orient">horizontal</property>
+                <property name="to">255</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="tk.OptionMenu" id="binarize_options">
+                <property name="command" type="command" cbtype="simple">set_binarize_option</property>
+                <property name="value">Normal</property>
+                <property name="values">Red,Green,Blue,Normal</property>
+                <layout manager="pack">
+                  <property name="anchor">n</property>
+                  <property name="fill">x</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="tk.Button" id="binarize_image_button">
+                <property name="command" type="command" cbtype="simple">binarize_image</property>
+                <property name="text" translatable="yes">Binarize Image</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="tk.Frame" id="algorithms_container">
+            <property name="height">138</property>
+            <property name="width">200</property>
+            <layout manager="pack">
+              <property name="padx">10</property>
+              <property name="pady">10</property>
+              <property name="side">top</property>
+            </layout>
+            <containerlayout manager="pack">
+              <property name="propagate">False</property>
+            </containerlayout>
+            <child>
+              <object class="tk.Label" id="algorithm_window_size_label">
+                <property name="justify">left</property>
+                <property name="text" translatable="yes">Window size</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="tk.Spinbox" id="algorithm_window_size_input">
+                <property name="from_">1</property>
+                <property name="increment">2</property>
+                <property name="to">100</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="padx">2</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="tk.Label" id="algorithm_k_label">
+                <property name="text" translatable="yes">k</property>
+                <layout manager="pack">
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="tk.Spinbox" id="algorithm_k_input">
+                <property name="from_">-100</property>
+                <property name="increment">0.1</property>
+                <property name="to">100</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="padx">2</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="tk.OptionMenu" id="algorithm_type">
+                <property name="command" type="command" cbtype="simple">set_algorithm_type</property>
+                <property name="value">Niblack Algorithm</property>
+                <property name="values">Niblack Algorithm,Sauvola Algorithm,Phansalkar Algorithm</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="tk.Button" id="calculate_algorithm_button">
+                <property name="command" type="command" cbtype="simple">sauvola_algorithm</property>
+                <property name="text" translatable="yes">Calculate</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="tk.Frame" id="segmentation_frame">
+            <property name="height">250</property>
+            <property name="width">200</property>
+            <layout manager="pack">
+              <property name="padx">10</property>
+              <property name="pady">10</property>
+              <property name="side">top</property>
+            </layout>
+            <containerlayout manager="pack">
+              <property name="propagate">False</property>
+            </containerlayout>
+            <child>
+              <object class="tk.Scale" id="R_color_scale">
+                <property name="from_">0</property>
+                <property name="label" translatable="yes">R</property>
+                <property name="orient">horizontal</property>
+                <property name="to">255</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="tk.Scale" id="G_color_scale">
+                <property name="from_">0</property>
+                <property name="label" translatable="yes">G</property>
+                <property name="orient">horizontal</property>
+                <property name="to">255</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="tk.Scale" id="B_color_scale">
+                <property name="from_">0</property>
+                <property name="label" translatable="yes">B</property>
+                <property name="orient">horizontal</property>
+                <property name="to">255</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="tk.Label" id="label5">
+                <property name="text" translatable="yes">Pixel count</property>
+                <layout manager="pack">
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="tk.Spinbox" id="serialization_pixel_count_input">
+                <property name="from_">0</property>
+                <property name="increment">1</property>
+                <property name="to">100</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="padx">2</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="tk.Checkbutton" id="segmentation_global_mode">
+                <property name="text" translatable="yes">Global mode</property>
+                <layout manager="pack">
+                  <property name="fill">both</property>
+                  <property name="side">left</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="tk.Checkbutton" id="segmentation_fill_mode">
+                <property name="text" translatable="yes">Fill mode</property>
+                <layout manager="pack">
+                  <property name="fill">both</property>
+                  <property name="side">left</property>
+                </layout>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Frame" id="main_frame">
+        <property name="background">#03256C</property>
+        <property name="height">800</property>
+        <property name="width">1166</property>
+        <layout manager="pack">
+          <property name="side">top</property>
+        </layout>
+        <containerlayout manager="pack">
+          <property name="propagate">False</property>
+        </containerlayout>
+        <child>
+          <object class="tk.Canvas" id="original_image_canvas">
+            <property name="background">#0e5092</property>
+            <property name="cursor">hand2</property>
+            <property name="height">350</property>
+            <property name="width">350</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.13</property>
+              <property name="rely">0.03</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="tk.Canvas" id="changed_image_1_canvas">
+            <property name="background">#970925</property>
+            <property name="cursor">hand2</property>
+            <property name="height">350</property>
+            <property name="width">350</property>
+            <layout manager="place">
+              <property name="anchor">ne</property>
+              <property name="relx">0.87</property>
+              <property name="rely">0.03</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="tk.Canvas" id="grey_original_image_canvas">
+            <property name="background">#65dc80</property>
+            <property name="height">350</property>
+            <property name="width">350</property>
+            <layout manager="place">
+              <property name="anchor">sw</property>
+              <property name="relx">0.13</property>
+              <property name="rely">0.97</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="tk.Canvas" id="grey_changed_image_1_canvas">
+            <property name="background">#8986bb</property>
+            <property name="height">350</property>
+            <property name="width">350</property>
+            <layout manager="place">
+              <property name="anchor">se</property>
+              <property name="relx">0.87</property>
+              <property name="rely">0.97</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="tk.Button" id="histogram_1">
+            <property name="command" type="command" cbtype="simple">generate_histogram</property>
+            <property name="text" translatable="yes">Histogram 1</property>
+            <layout manager="place">
+              <property name="relx">0.035</property>
+              <property name="rely">0.25</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="tk.Button" id="histogram_2">
+            <property name="command" type="command" cbtype="simple">generate_histogram</property>
+            <property name="text" translatable="yes">Histogram 2</property>
+            <layout manager="place">
+              <property name="anchor">se</property>
+              <property name="relx">0.965</property>
+              <property name="rely">0.25</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="tk.Button" id="histogram_3">
+            <property name="command" type="command" cbtype="simple">generate_histogram</property>
+            <property name="text" translatable="yes">Histogram 3</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.035</property>
+              <property name="rely">0.75</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="tk.Button" id="histogram_4">
+            <property name="command" type="command" cbtype="simple">generate_histogram</property>
+            <property name="text" translatable="yes">Histogram 4</property>
+            <layout manager="place">
+              <property name="anchor">se</property>
+              <property name="relx">0.965</property>
+              <property name="rely">0.75</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

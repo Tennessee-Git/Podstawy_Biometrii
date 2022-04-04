@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "biometria"
+version = "0.1.0"
+description = ""
+authors = ["Mateusz Bialowas <58574619+mateuszbialowas@users.noreply.github.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+tkdesigner = "^1.0.4"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
